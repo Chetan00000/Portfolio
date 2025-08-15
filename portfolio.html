@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="indigo">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chetan Chauhan | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ------------------------------
+       THEME VARIABLES (COLORS ONLY)
+       ------------------------------ */
+    :root {
+      --bg-color: #0f172a;        /* base background */
+      --primary-text: #e2e8f0;    /* main text        */
+      --secondary-text: #94a3b8;  /* muted text       */
+      --accent-color: #818cf8;    /* links/buttons    */
+      --card-bg: #1e293b;         /* surfaces/cards   */
+      --border-color: #334155;    /* borders          */
+      --shadow-accent: 0 10px 25px rgba(129, 140, 248, .15);
+    }
+
+    /* Indigo (default) */
+    [data-theme="indigo"] {
+      --bg-color: #0f172a;
+      --primary-text: #e2e8f0;
+      --secondary-text: #94a3b8;
+      --accent-color: #818cf8;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --shadow-accent: 0 10px 25px rgba(129, 140, 248, .15);
+    }
+    /* Emerald */
+    [data-theme="emerald"] {
+      --bg-color: #0b1c17;
+      --primary-text: #e6fffb;
+      --secondary-text: #83bfb3;
+      --accent-color: #34d399;
+      --card-bg: #112823;
+      --border-color: #1e3a34;
+      --shadow-accent: 0 10px 25px rgba(52, 211, 153, .18);
+    }
+    /* Rose */
+    [data-theme="rose"] {
+      --bg-color: #1a0f14;
+      --primary-text: #fde2e4;
+      --secondary-text: #f2a7b3;
+      --accent-color: #fb7185;
+      --card-bg: #251219;
+      --border-color: #3a1c26;
+      --shadow-accent: 0 10px 25px rgba(251, 113, 133, .18);
+    }
+    /* Amber */
+    [data-theme="amber"] {
+      --bg-color: #140e05;
+      --primary-text: #fff7ed;
+      --secondary-text: #facc15cc;
+      --accent-color: #f59e0b;
+      --card-bg: #1b1408;
+      --border-color: #2a2012;
+      --shadow-accent: 0 10px 25px rgba(245, 158, 11, .2);
+    }
+    /* Sky */
+    [data-theme="sky"] {
+      --bg-color: #07141e;
+      --primary-text: #e6f6ff;
+      --secondary-text: #9ecae6;
+      --accent-color: #38bdf8;
+      --card-bg: #0b2230;
+      --border-color: #123548;
+      --shadow-accent: 0 10px 25px rgba(56, 189, 248, .18);
+    }
+    /* Violet */
+    [data-theme="violet"] {
+      --bg-color: #130f1a;
+      --primary-text: #efe9ff;
+      --secondary-text: #b19cd9;
+      --accent-color: #a78bfa;
+      --card-bg: #1a1524;
+      --border-color: #2a2140;
+      --shadow-accent: 0 10px 25px rgba(167, 139, 250, .18);
+    }
+
+    /* ------------------------------
+       BASE STYLES (Typography + Color Bindings)
+       ------------------------------ */
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--primary-text);
+    }
+
+    /* Utility classes bound to variables (used to replace hard-coded Tailwind colors) */
+    .text-primary { color: var(--primary-text); }
+    .text-secondary { color: var(--secondary-text); }
+    .text-accent { color: var(--accent-color); }
+    .bg-body { background-color: var(--bg-color); }
+    .bg-card { background-color: var(--card-bg); }
+    .border-themecolor { border-color: var(--border-color); }
+    .ring-accent { box-shadow: 0 0 0 4px var(--accent-color); }
+
+    .link { color: var(--secondary-text); transition: color .25s ease; }
+    .link:hover { color: var(--accent-color); }
+
+    .btn-primary { 
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      border-radius: .5rem; /* rounded-md */
+      padding: .75rem 1.25rem; /* px-5 py-3 */
+      font-size: 1.125rem; /* text-lg */
+      font-weight: 600; /* font-medium/bold-ish */
+      transition: all .3s ease;
+      transform: translateZ(0);
+    }
+    .btn-primary:hover {
+      background: color-mix(in oklab, var(--accent-color) 12%, transparent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .section-heading { 
+      font-size: clamp(1.875rem, 2.5vw, 2.5rem); /* ~text-3xl to 4xl */
+      font-weight: 800;
+      color: var(--primary-text);
+      margin-bottom: 3rem;
+      display: flex; align-items: center;
+    }
+    .section-heading::after {
+      content: '';
+      display: block;
+      position: relative; top: 1px;
+      width: 150px; height: 1px; margin-left: 20px;
+      background-color: var(--border-color);
+    }
+
+    #bg-canvas { position: fixed; inset: 0; z-index: -1; opacity: .12; }
+
+    .glass-effect {
+      background: color-mix(in oklab, var(--card-bg) 60%, transparent);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid color-mix(in oklab, var(--border-color) 60%, transparent);
+    }
+
+    /* Scroll Reveal */
+    [data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.5,0,0,1), transform .8s cubic-bezier(.5,0,0,1); }
+    [data-reveal="visible"] { opacity: 1; transform: translateY(0); }
+
+    /* Skill tag (class added by JS too) */
+    .skill-tag { background: color-mix(in oklab, var(--border-color) 50%, transparent); color: var(--primary-text); }
+
+    /* THEME PICKER (tiny, non-intrusive) */
+    .theme-picker { position: fixed; right: 16px; bottom: 16px; z-index: 60; }
+    .theme-btn { width: 34px; height: 34px; border-radius: 9999px; border: 1px solid var(--border-color); display: inline-flex; align-items: center; justify-content: center; background: var(--card-bg); color: var(--accent-color); transition: transform .2s ease; }
+    .theme-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-accent); }
+    .theme-panel { position: absolute; right: 0; bottom: 48px; display: none; padding: .5rem; border: 1px solid var(--border-color); background: var(--card-bg); border-radius: .75rem; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .swatch { width: 26px; height: 26px; border-radius: 9999px; border: 1px solid var(--border-color); cursor: pointer; }
+    .swatches { display: grid; grid-template-columns: repeat(6, 26px); gap: .5rem; }
+  </style>
+</head>
+
+<body class="antialiased text-secondary bg-body">
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-accent">CC</a>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#about" class="link">About</a>
+        <a href="#experience" class="link">Experience</a>
+        <a href="#projects" class="link">Projects</a>
+        <a href="#skills" class="link">Skills</a>
+        <a href="https://drive.google.com/file/d/1P1Ztp5dgwh7hQ3-LjuQM4CVXQW0aLSGo/view?usp=sharing" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="btn-primary">
+  View Resume
+</a>
+
+        <a href="#contact" class="btn-primary !px-4 !py-2 !text-base">Contact</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden text-2xl text-primary" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden bg-card px-6 pb-4">
+      <a href="#about" class="block py-2 link">About</a>
+      <a href="#experience" class="block py-2 link">Experience</a>
+      <a href="#projects" class="block py-2 link">Projects</a>
+      <a href="#skills" class="block py-2 link">Skills</a>
+     <a href="https://drive.google.com/file/d/1P1Ztp5dgwh7hQ3-LjuQM4CVXQW0aLSGo/view?usp=sharing" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="btn-primary">
+  View Resume
+</a>
+
+      <a href="#contact" class="block mt-4 text-center btn-primary">Contact</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex flex-col justify-center">
+      <div class="max-w-4xl" data-reveal>
+        <p class="text-lg text-accent mb-4">Hi, my name is</p>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-primary">Chetan Chauhan.</h1>
+        <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-secondary mt-2">I build things for the web and analyze data.</h2>
+        <p class="mt-6 max-w-2xl text-lg text-secondary">
+          I'm a computer science student with a passion for data analytics, web development, and IoT. I specialize in creating insightful data visualizations, building responsive web applications, and engineering solutions for a connected world.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+        <a href="#projects" class="btn-primary">Check out my work!</a>
+<a href="https://drive.google.com/file/d/1P1Ztp5dgwh7hQ3-LjuQM4CVXQW0aLSGo/view?usp=sharing" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="btn-primary">
+  View Resume
+</a>
+
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-24" data-reveal>
+      <h2 class="section-heading">About Me</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+        <div class="md:col-span-3 text-secondary space-y-4 text-lg">
+          <p>Hello! I'm Chetan, a computer science student who loves to solve problems and build cool things. I started my journey by building a strong foundation in C/C++ and Data Structures (DSA), which gave me the core skills to tackle complex challenges and write efficient code.</p>
+          <p>From there, I dove into the world of web development and fell in love with the MERN stack. I really enjoy building complete, end-to-end applications, from designing the backend logic with Node.js and Express to creating dynamic user interfaces with React.</p>
+          <p>I'm also a data enthusiast! I love digging into datasets to find hidden patterns and tell stories with data through Data Analytics. This curiosity extends to the Internet of Things (IoT), where I'm excited about creating smart devices that can interact with the world around them. I believe combining web tech, data, and IoT is the future, and I'm excited to be a part of it.</p>
+        </div>
+        <div class="md:col-span-2 flex justify-center">
+          <div class="w-64 h-64 rounded-lg bg-card border-2" style="border-color: var(--accent-color); position: relative;" >
+            <img src="https://placehold.co/400x400/0F172A/818CF8?text=Problem+Solver" alt="Chetan Chauhan" class="w-full h-full object-cover rounded-md transition-transform duration-300 hover:translate-x-2 hover:-translate-y-2" />
+            <div class="absolute inset-0 border-2 rounded-md -z-10 translate-x-4 translate-y-4 transition-transform duration-300" style="border-color: var(--accent-color);"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-24" data-reveal>
+      <h2 class="section-heading">Where I've Worked</h2>
+      <div class="max-w-3xl mx-auto">
+        <div class="relative border-l-2" style="border-color: color-mix(in oklab, var(--accent-color) 30%, transparent);">
+          <div class="mb-12 ml-6 md:ml-10 p-6 rounded-lg glass-effect relative">
+            <span class="absolute -left-[11px] flex items-center justify-center w-6 h-6 bg-body rounded-full" style="box-shadow: 0 0 0 4px var(--accent-color);"></span>
+            <h3 class="text-xl font-semibold text-primary">Operational Intern</h3>
+            <p class="text-accent mb-1">Meritto (formerly NoPaperForms), Gurugram, IN</p>
+            <time class="block mb-2 text-sm font-normal leading-none text-secondary">Jul 2025</time>
+            <ul class="list-disc list-inside text-secondary space-y-1">
+              <li>Delivered the Central Ops team in managing and updating 10+ landing pages for education clients.</li>
+              <li>Streamlined content placement and basic layout fixes using internal CMS tools.</li>
+              <li>Directed with 2–3 internal teams to ensure timely updates and issue resolution.</li>
+            </ul>
+          </div>
+          <div class="mb-12 ml-6 md:ml-10 p-6 rounded-lg glass-effect relative">
+            <span class="absolute -left-[11px] flex items-center justify-center w-6 h-6 bg-body rounded-full" style="box-shadow: 0 0 0 4px var(--accent-color);"></span>
+            <h3 class="text-xl font-semibold text-primary">Summer Trainee</h3>
+            <p class="text-accent mb-1">NIET IIC, AICTE IDEA Lab, Greater Noida, IN</p>
+            <time class="block mb-2 text-sm font-normal leading-none text-secondary">Aug 2023</time>
+            <ul class="list-disc list-inside text-secondary space-y-1">
+              <li>Increased project efficiency by 20% through Design Thinking, 3D Printing, IoT, and CNC Laser Machining.</li>
+              <li>Spearheaded a team of 4 to develop a robotic arm prototype dedicated for medical applications.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-24" data-reveal>
+      <h2 class="section-heading">Things I've Built</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="rounded-lg p-6 flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300" style="background: var(--card-bg); border: 1px solid color-mix(in oklab, var(--border-color) 60%, transparent);">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--accent-color);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+              <div class="flex space-x-4">
+                <a href="https://github.com/Chetan00000" target="_blank" class="link" aria-label="GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.54 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-2">WellCare Mental Health App</h3>
+            <p class="text-secondary">A real-time sentiment analysis tool to automate therapy recommendations, serving 500+ users in its first month.</p>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">ReactJS</span>
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">Flask</span>
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">NLP</span>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="rounded-lg p-6 flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300" style="background: var(--card-bg); border: 1px solid color-mix(in oklab, var(--border-color) 60%, transparent);">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--accent-color);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+              <div class="flex space-x-4">
+                <a href="https://github.com/Chetan00000" target="_blank" class="link" aria-label="GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.54 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-2">Real-Time Chat Application</h3>
+            <p class="text-secondary">This is a full-featured, real-time chat application inspired by WhatsApp, built using the MERN stack and Socket.io.</p>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">MERN</span>
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">Socket.io</span>
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">Cloudinary</span>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="rounded-lg p-6 flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300" style="background: var(--card-bg); border: 1px solid color-mix(in oklab, var(--border-color) 60%, transparent);">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--accent-color);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <div class="flex space-x-4">
+                <a href="https://github.com/Chetan00000" target="_blank" class="link" aria-label="GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.54 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-2">Doordarshi – AI Wearable for the Blind</h3>
+            <p class="text-secondary">Prototyped an offline Edge-AI wearable on Raspberry Pi to help visually impaired detect surroundings and read text without internet.</p>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">Python</span>
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">Open CV</span>
+            <span class="text-xs font-mono text-accent/90 px-2 py-1 rounded" style="background: color-mix(in oklab, var(--accent-color) 12%, transparent)">Tesseract OCR</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-24" data-reveal>
+      <h2 class="section-heading">My Skills & Certifications</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-bold text-primary mb-6">Technical Skills</h3>
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-lg font-semibold text-accent mb-2">Languages & Web</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">C++</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">JavaScript</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">HTML5</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">CSS3</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">ReactJS</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold text-accent mb-2">Data & Analytics</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">Power BI</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">Tableau</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">MySQL</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">MongoDB</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">AI/ML</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">Data Visualization</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold text-accent mb-2">Internet of Things (IoT)</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">Raspberry Pi</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">Arduino UNO</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">NodeMCU</span>
+                <span class="skill-tag px-3 py-1 rounded-full text-sm">Sensors</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold text-primary mb-6">Certifications</h3>
+          <ul class="space-y-3 text-secondary">
+            <li class="flex items-start"><span class="text-accent mr-3">✓</span><span>Udemy: Complete Data Analytics BootCamp</span></li>
+            <li class="flex items-start"><span class="text-accent mr-3">✓</span><span>IBM: Python for Data Science, AI & Development</span></li>
+            <li class="flex items-start"><span class="text-accent mr-3">✓</span><span>IBM: Introduction to Artificial Intelligence (AI)</span></li>
+            <li class="flex items-start"><span class="text-accent mr-3">✓</span><span>Infosys: Introduction to Cybersecurity</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 text-center" data-reveal>
+      <h2 class="text-2xl font-semibold text-accent mb-2">What's Next?</h2>
+      <h3 class="text-4xl md:text-5xl font-bold text-primary mb-4">Get In Touch</h3>
+      <p class="max-w-xl mx-auto text-secondary mb-8">I'm currently open to new opportunities and would love to chat. Whether you have a question or just want to say hi, feel free to reach out. I'll do my best to get back to you!</p>
+      <a href="mailto:chauhanchetan2004@gmail.com" class="btn-primary text-xl">Say Hello</a>
+    </section>
+  </main>
+
+  <footer class="py-6 relative z-10">
+    <div class="flex justify-center items-center space-x-6 mb-4">
+      <a href="https://github.com/Chetan00000" target="_blank" rel="noopener noreferrer" class="link" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.54 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/chetan-chauhan-6543a7248/" target="_blank" rel="noopener noreferrer" class="link" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      </a>
+    </div>
+    <p class="text-center text-secondary text-sm">Designed & Built by Chetan Chauhan</p>
+  </footer>
+
+  <!-- Tiny Theme Picker (colors only; does not change layout) -->
+  <div class="theme-picker">
+    <button id="theme-toggle" class="theme-btn" title="Themes" aria-label="Themes">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <div id="theme-panel" class="theme-panel">
+      <div class="swatches">
+        <div class="swatch" data-theme="indigo" style="background:#818cf8"></div>
+        <div class="swatch" data-theme="emerald" style="background:#34d399"></div>
+        <div class="swatch" data-theme="rose" style="background:#fb7185"></div>
+        <div class="swatch" data-theme="amber" style="background:#f59e0b"></div>
+        <div class="swatch" data-theme="sky" style="background:#38bdf8"></div>
+        <div class="swatch" data-theme="violet" style="background:#a78bfa"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Mobile Menu Toggle ---
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      // Close on link click
+      [...mobileMenu.getElementsByTagName('a')].forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+      // --- Header Shadow on Scroll ---
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          header.classList.add('shadow-lg');
+          header.style.boxShadow = '0 10px 30px rgba(0,0,0,.35)';
+        } else {
+          header.classList.remove('shadow-lg');
+          header.style.boxShadow = 'none';
+        }
+      });
+
+      // --- Skill tag progressive enhancement (already styled in CSS) ---
+      document.querySelectorAll('.skill-tag').forEach(tag => {
+        tag.classList.add('whitespace-nowrap');
+      });
+
+      // --- Animated Background Canvas ---
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
+      function createParticles() {
+        particles = []; const count = Math.floor(canvas.width / 40);
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            r: Math.random() * 1.5 + 0.5,
+          });
+        }
+      }
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim() + '80';
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      function resetCanvas() { resizeCanvas(); createParticles(); }
+      resetCanvas(); animateParticles();
+      addEventListener('resize', resetCanvas);
+
+      // --- Scroll Reveal ---
+      const revealEls = document.querySelectorAll('[data-reveal]');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.setAttribute('data-reveal', 'visible'); io.unobserve(entry.target); } });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => io.observe(el));
+
+      // --- Theme Picker ---
+      const root = document.documentElement;
+      const panel = document.getElementById('theme-panel');
+      const toggle = document.getElementById('theme-toggle');
+      const swatches = document.querySelectorAll('.swatch');
+
+      // Persist theme
+      const saved = localStorage.getItem('cc-theme');
+      if (saved) root.setAttribute('data-theme', saved);
+
+      toggle.addEventListener('click', () => {
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.theme-picker')) panel.style.display = 'none';
+      });
+      swatches.forEach(s => s.addEventListener('click', () => {
+        const t = s.getAttribute('data-theme');
+        root.setAttribute('data-theme', t);
+        localStorage.setItem('cc-theme', t);
+        panel.style.display = 'none';
+      }));
+    });
+  </script>
+</body>
+</html>
