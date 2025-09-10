@@ -60,11 +60,12 @@ This portfolio was built using the following technologies and is hosted on Rende
 
 ---
 
-## 📬 Get In Touch
+## 🤝 Let's Connect
 
-I'm always open to connecting and discussing new opportunities.
+I'm always open to connecting and discussing new opportunities.  
 
-* **LinkedIn:** [https://www.linkedin.com/in/chetan-chauhan-6543a7248/](https://www.linkedin.com/in/chetan-chauhan-6543a7248/)
-* **Email:** [chauhanchetan2004@gmail.com](mailto:chauhanchetan2004@gmail.com)
+- **LinkedIn:** [Chetan Chauhan](https://www.linkedin.com/in/chetan-chauhan-6543a7248/)  
+- **Email:** [chauhanchetan2004@gmail.com](mailto:chauhanchetan2004@gmail.com)
+
 
 ---
