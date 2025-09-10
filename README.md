@@ -1,4 +1,4 @@
-#PortFolio
+## PortFolio
 
 **Welcome** to the source code repository for my personal portfolio website. This is a fully responsive, single-page application built with modern web technologies to showcase my skills, professional experience, and the projects I've worked on.
 
@@ -12,7 +12,7 @@ You can view the live version of my portfolio here:
 
 ---
 
-##📸 Screenshot
+## 📸 Screenshot
 
 
 Here's a glimpse of what the portfolio looks like:
