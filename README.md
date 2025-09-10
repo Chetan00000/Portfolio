@@ -1,10 +1,10 @@
+#PortFolio
 
-
-Welcome to the source code repository for my personal portfolio website. This is a fully responsive, single-page application built with modern web technologies to showcase my skills, professional experience, and the projects I've worked on.
+**Welcome** to the source code repository for my personal portfolio website. This is a fully responsive, single-page application built with modern web technologies to showcase my skills, professional experience, and the projects I've worked on.
 
 ---
 
-### ## 🚀 Live Demo
+## 🚀 Live Demo
 
 You can view the live version of my portfolio here:
 
@@ -12,7 +12,7 @@ You can view the live version of my portfolio here:
 
 ---
 
-### ## 📸 Screenshot
+##📸 Screenshot
 
 
 Here's a glimpse of what the portfolio looks like:
@@ -28,7 +28,7 @@ Here's a glimpse of what the portfolio looks like:
 
 ---
 
-### ## ✨ Key Features
+## ✨ Key Features
 
 * **Sleek & Modern UI:** A clean, dark-themed design ("Slate & Indigo") that is easy on the eyes.
 * **Fully Responsive:** The layout seamlessly adapts to all screen sizes, from mobile phones to desktop monitors.
@@ -43,7 +43,7 @@ Here's a glimpse of what the portfolio looks like:
 
 ---
 
-### ## 🛠️ Tech Stack & Deployment
+## 🛠️ Tech Stack & Deployment
 
 This portfolio was built using the following technologies and is hosted on Render:
 
@@ -56,7 +56,7 @@ This portfolio was built using the following technologies and is hosted on Rende
 
 ---
 
-### ## 📬 Get In Touch
+## 📬 Get In Touch
 
 I'm always open to connecting and discussing new opportunities.
 
