@@ -23,7 +23,8 @@ You can view the live version of my portfolio here:
 **Here's a glimpse of what the portfolio looks like:**
 <img width="1892" height="967" alt="image" src="https://github.com/user-attachments/assets/ff62bce6-5461-4e9d-af6b-3da12e0526e5" />
 ---
-<img width="1909" height="967" alt="image" src="https://github.com/user-attachments/assets/dd110677-f8c1-4d79-af8b-5e7c4bda5cee" />
+<img width="1915" height="909" alt="image" src="https://github.com/user-attachments/assets/fcda39dc-e011-42dd-8ece-3f9a83c64a18" />
+
 ---
 <img width="1919" height="975" alt="image" src="https://github.com/user-attachments/assets/5e79e071-0012-4d52-86c2-2060fbbaa69a" />
 ---
